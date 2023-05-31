@@ -1,0 +1,81 @@
+@font-face {
+  font-family: 'Classic Console Neue';
+  src: url('./ClassicConsoleNeue.ttf');
+}
+
+@font-face {
+  font-family: 'PxPlus_IBM_VGA8';
+  src: url('./PxPlus_IBM_VGA8.ttf');
+}
+
+/* *, *:before, *:after {
+  box-sizing: border-box;
+} */
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #222;
+  color: orange;
+  font-family: 'PxPlus_IBM_VGA8', 'Classic Console Neue', monospace;
+  font-size: 15pt;
+
+  min-height: 100%;
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+header {
+  width: 100%;
+  height: 2rem;
+  background: orange;
+  color: #222;
+  padding-top: 0.25rem;
+  font-size: 1.5em;
+}
+
+header ul {
+  display: flex;
+  margin: 0;
+  padding: 0 1rem;
+  justify-content: flex-start;
+}
+
+header ul li {
+  list-style: none;
+  padding: 0;
+}
+
+.flex-push {
+  margin-left: auto;
+}
+
+.main-menu {
+  text-align: center;
+}
+
+.main-menu ol, .main-menu ul {
+  display: inline-block;
+  text-align: left;
+}
+
+main {
+  margin: 1em;
+}
+
+footer {
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+footer div {
+  padding: 1rem;
+}
