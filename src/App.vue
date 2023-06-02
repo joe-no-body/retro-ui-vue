@@ -23,8 +23,11 @@ function initTimeUpdater(dateRef, timeRef) {
 
     // TODO: test and validate this logic
     let hour = date.getHours();
-    let period = (hour >= 12) ? 'pm' : 'am';
-    hour %= 12;
+    let period = 'am';
+    if (hour >= 12) {
+      period = 'pm';
+      hour -= 12;
+    }
     if (hour == 0) hour = '12';
     hour = zeropad(hour);
     let minute = zeropad(date.getMinutes());
