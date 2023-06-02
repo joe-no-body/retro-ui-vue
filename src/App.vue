@@ -1,6 +1,24 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { ref, onMounted } from 'vue';
+
+// import { RouterLink, RouterView } from 'vue-router'
 // import HelloWorld from './components/HelloWorld.vue'
+
+const selectionInput = ref(null);
+const selection = ref('');
+const message = ref(null);
+
+onMounted(() => {
+  selectionInput.value.focus();
+
+  window.addEventListener('click', () => selectionInput.value.focus());
+})
+
+function handleSelection() {
+  let selectionVal = selection.value;
+  message.value = `Invalid selection: ${selection.value}`;
+  selection.value = '';
+}
 </script>
 
 <template>
@@ -51,10 +69,26 @@ import { RouterLink, RouterView } from 'vue-router'
       </div>
     </main>
     <footer>
-      <div>Footer</div>
+      <div>
+        <mark>Enter your selection(s) and press &lt;Enter&gt;:</mark>
+        <span class="full-width-input"><input type="text" ref="selectionInput" v-model="selection" @keyup.enter="handleSelection"></span>
+      </div>
+      <div v-if="message">{{ message }}</div>
     </footer>
   </div>
 </template>
 
-<style scoped>
+<style>
+footer div * {
+  vertical-align: bottom;
+}
+.full-width-input {
+  display: inline-block;
+  overflow: hidden;
+  padding-right: 1em;
+}
+
+.full-width-input input[type="text"] {
+  width: 100%;
+}
 </style>
