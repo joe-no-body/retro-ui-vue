@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 // import { RouterLink, RouterView } from 'vue-router'
 // import HelloWorld from './components/HelloWorld.vue'
@@ -22,6 +22,10 @@ onMounted(() => {
   focusInputBox();
   // Focus input when the user clicks anywhere.
   window.addEventListener('click', focusInputBox);
+})
+
+onUnmounted(() => {
+  window.removeEventListener('click', focusInputBox);
 })
 
 function handleUserSelectionValue() {
