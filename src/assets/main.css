@@ -30,7 +30,7 @@ html {
   height: 100%;
 }
 
-.fix-aspect-ratio {
+.fix-font {
   /* text should have a 5:6 aspect ratio to render correctly */
   /* TODO: figure out how to apply this without breaking the aspect ratio of the
      entire page (otherwise there's a large border around everthing) */
@@ -45,6 +45,9 @@ body {
   font-family: var(--font), monospace;
   font-size: 1rem;
   min-height: 100%;
+
+  /* transform: scaleX(0.8333);
+  width: 120%; */
 }
 
 .wrapper {
