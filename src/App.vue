@@ -11,6 +11,8 @@ const message = ref(null);
 onMounted(() => {
   selectionInput.value.focus();
 
+  // TODO: only focus the input if the user hasn't selected text on screen.
+  // Right now this makes it a pain to select and copy text.
   window.addEventListener('click', () => selectionInput.value.focus());
 })
 
