@@ -78,9 +78,11 @@ function handleUserSelectionValue() {
       </div>
     </main>
     <footer>
-      <div>
-        <mark>Enter your selection(s) and press &lt;Enter&gt;:</mark>
-        <span class="full-width-input"><input type="text" ref="userSelectionInput" v-model="userSelection" @keyup.enter="handleUserSelectionValue"></span>
+      <div class="full-width-input-container">
+        <div class="label">
+          <mark>Enter your selection(s) and press &lt;Enter&gt;:</mark>
+        </div>
+        <div class="input"><input type="text" ref="userSelectionInput" v-model="userSelection" @keyup.enter="handleUserSelectionValue"></div>
       </div>
       <div v-if="message">{{ message }}</div>
     </footer>
@@ -88,16 +90,26 @@ function handleUserSelectionValue() {
 </template>
 
 <style>
-footer div * {
-  vertical-align: bottom;
-}
-.full-width-input {
-  display: inline-block;
-  overflow: hidden;
-  padding-right: 1em;
+.full-width-input-container {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
 }
 
-.full-width-input input[type="text"] {
+.full-width-input-container .label {
+  flex: initial;
+}
+
+.full-width-input-container .input {
+  flex: auto;
+}
+
+.full-width-input-container .input input {
   width: 100%;
+}
+
+footer div * {
+  vertical-align: bottom;
 }
 </style>
