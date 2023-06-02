@@ -80,21 +80,6 @@ function handleUserSelectionValue() {
 </script>
 
 <template>
-  <!-- <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header> -->
-
-  <!-- <RouterView /> -->
-
   <div class="wrapper">
     <header>
       <ul>
@@ -103,29 +88,7 @@ function handleUserSelectionValue() {
         <li class="flex-push">{{ displayTime }}</li>
       </ul>
     </header>
-    <main>
-      <div class="main-menu">
-        <p>
-          Welcome to the Online Public Access Catalog!<br />
-          Please select one of the options below.
-        </p>
-
-        <ol>
-          <li>TITLE Keywords</li>
-          <li>Exact TITLE</li>
-          <li>AUTHOR Browse</li>
-          <li>SUBJECT Keywords</li>
-          <li>SERIES</li>
-          <li>SUPER Search</li>
-          <li>Newspaper Keyword Search</li>
-          <li>Newspaper Subject Search</li>
-          <li>Best Sellers and Award Books</li>
-          <li>Additional Searches</li>
-          <li>Review Patron Record</li>
-          <li>Logoff</li>
-        </ol>
-      </div>
-    </main>
+    <RouterView/>
     <footer>
       <div class="full-width-input-container">
         <div class="label">
@@ -137,28 +100,3 @@ function handleUserSelectionValue() {
     </footer>
   </div>
 </template>
-
-<style>
-.full-width-input-container {
-  display: inline-flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  width: 100%;
-}
-
-.full-width-input-container .label {
-  flex: initial;
-}
-
-.full-width-input-container .input {
-  flex: auto;
-}
-
-.full-width-input-container .input input {
-  width: 100%;
-}
-
-footer div * {
-  vertical-align: bottom;
-}
-</style>

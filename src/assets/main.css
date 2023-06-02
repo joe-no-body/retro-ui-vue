@@ -104,6 +104,10 @@ footer div {
   padding: 0.125rem;
 }
 
+footer div * {
+  vertical-align: bottom;
+}
+
 mark {
   background-color: var(--fg-color);
   color: var(--bg-color);
@@ -118,4 +122,23 @@ input[type="text"] {
   height: 1em;
   font-family: var(--font), monospace;
   font-size: var(--font-size);
+}
+
+.full-width-input-container {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.full-width-input-container .label {
+  flex: initial;
+}
+
+.full-width-input-container .input {
+  flex: auto;
+}
+
+.full-width-input-container .input input {
+  width: 100%;
 }
