@@ -15,7 +15,9 @@
 
 @font-face {
   font-family: 'SperryPC 8x16';
-  src: url('./Web437_SperryPC_8x16.woff');
+  font-style: normal;
+  font-weight: 400;
+  src: url('./Web437_SperryPC_8x16.woff') format('woff');
 }
 
 :root {
