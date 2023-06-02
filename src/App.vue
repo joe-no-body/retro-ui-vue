@@ -4,22 +4,29 @@ import { ref, onMounted } from 'vue';
 // import { RouterLink, RouterView } from 'vue-router'
 // import HelloWorld from './components/HelloWorld.vue'
 
-const selectionInput = ref(null);
-const selection = ref('');
+const userSelectionInput = ref(null);
+const userSelection = ref('');
 const message = ref(null);
 
-onMounted(() => {
-  selectionInput.value.focus();
+function focusInputBox() {
+  // Only focus the input if the user hasn't selected text on screen.
+  let selection = window.getSelection();
+  console.debug("Current selection:", selection);
+  if (selection && selection.anchorNode && !selection.isCollapsed) return;
 
-  // TODO: only focus the input if the user hasn't selected text on screen.
-  // Right now this makes it a pain to select and copy text.
-  window.addEventListener('click', () => selectionInput.value.focus());
+  userSelectionInput.value?.focus();
+}
+
+onMounted(() => {
+  // Focus input on page load.
+  focusInputBox();
+  // Focus input when the user clicks anywhere.
+  window.addEventListener('click', focusInputBox);
 })
 
-function handleSelection() {
-  let selectionVal = selection.value;
-  message.value = `Invalid selection: ${selection.value}`;
-  selection.value = '';
+function handleUserSelectionValue() {
+  message.value = `Invalid selection: ${userSelection.value}`;
+  userSelection.value = '';
 }
 </script>
 
@@ -73,7 +80,7 @@ function handleSelection() {
     <footer>
       <div>
         <mark>Enter your selection(s) and press &lt;Enter&gt;:</mark>
-        <span class="full-width-input"><input type="text" ref="selectionInput" v-model="selection" @keyup.enter="handleSelection"></span>
+        <span class="full-width-input"><input type="text" ref="userSelectionInput" v-model="userSelection" @keyup.enter="handleUserSelectionValue"></span>
       </div>
       <div v-if="message">{{ message }}</div>
     </footer>
