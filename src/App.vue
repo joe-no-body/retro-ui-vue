@@ -11,28 +11,40 @@ const message = ref(null);
 const displayDate = ref('');
 const displayTime = ref('');
 
-let animationFrameHandle;
+function initTimeUpdater(dateRef, timeRef) {
+  let intervalId;
+
+
+  function updateTime() {
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = zeropad(date.getMonth());
+    let day = zeropad(date.getDate());
+
+    // TODO: test and validate this logic
+    let hour = date.getHours();
+    let period = (hour >= 12) ? 'pm' : 'am';
+    hour %= 12;
+    if (hour == 0) hour = '12';
+    hour = zeropad(hour);
+    let minute = zeropad(date.getMinutes());
+
+    dateRef.value = `${year}-${month}-${day}`;
+    timeRef.value = `${hour}:${minute}${period}`;
+  }
+
+  onMounted(() => {
+    updateTime();
+    intervalId = setInterval(updateTime, 1000);
+  });
+
+  onUnmounted(() => {
+    clearInterval(intervalId);
+  });
+}
 
 function zeropad(s) {
   return ("" + s).padStart(2, "0");
-}
-
-function keepTimeUpdated() {
-  let date = new Date();
-  let year = date.getFullYear();
-  let month = zeropad(date.getMonth());
-  let day = zeropad(date.getDate());
-
-  let hour = date.getHours();
-  let period = (hour >= 12) ? 'pm' : 'am';
-  hour %= 12;
-  if (hour == 0) hour = '12';
-  let minute = zeropad(date.getMinutes());
-
-  displayDate.value = `${year}-${month}-${day}`;
-  displayTime.value = `${hour}:${minute}${period}`;
-
-  animationFrameHandle = requestAnimationFrame(keepTimeUpdated);
 }
 
 function focusInputBox() {
@@ -49,14 +61,13 @@ onMounted(() => {
   focusInputBox();
   // Focus input when the user clicks anywhere.
   window.addEventListener('click', focusInputBox);
-
-  keepTimeUpdated();
-})
+});
 
 onUnmounted(() => {
   window.removeEventListener('click', focusInputBox);
-  cancelAnimationFrame(animationFrameHandle);
-})
+});
+
+initTimeUpdater(displayDate, displayTime);
 
 function handleUserSelectionValue() {
   message.value = `Invalid selection: ${userSelection.value}`;
