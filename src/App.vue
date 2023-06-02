@@ -8,6 +8,33 @@ const userSelectionInput = ref(null);
 const userSelection = ref('');
 const message = ref(null);
 
+const displayDate = ref('');
+const displayTime = ref('');
+
+let animationFrameHandle;
+
+function zeropad(s) {
+  return ("" + s).padStart(2, "0");
+}
+
+function keepTimeUpdated() {
+  let date = new Date();
+  let year = date.getFullYear();
+  let month = zeropad(date.getMonth());
+  let day = zeropad(date.getDate());
+
+  let hour = date.getHours();
+  let period = (hour >= 12) ? 'pm' : 'am';
+  hour %= 12;
+  if (hour == 0) hour = '12';
+  let minute = zeropad(date.getMinutes());
+
+  displayDate.value = `${year}-${month}-${day}`;
+  displayTime.value = `${hour}:${minute}${period}`;
+
+  animationFrameHandle = requestAnimationFrame(keepTimeUpdated);
+}
+
 function focusInputBox() {
   // Only focus the input if the user hasn't selected text on screen.
   let selection = window.getSelection();
@@ -22,10 +49,13 @@ onMounted(() => {
   focusInputBox();
   // Focus input when the user clicks anywhere.
   window.addEventListener('click', focusInputBox);
+
+  keepTimeUpdated();
 })
 
 onUnmounted(() => {
   window.removeEventListener('click', focusInputBox);
+  cancelAnimationFrame(animationFrameHandle);
 })
 
 function handleUserSelectionValue() {
@@ -53,9 +83,9 @@ function handleUserSelectionValue() {
   <div class="wrapper">
     <header>
       <ul>
-        <li>2023-05-31</li>
+        <li>{{ displayDate }}</li>
         <li class="flex-push">DIGITAL PUBLIC LIBRARY</li>
-        <li class="flex-push">09:28am</li>
+        <li class="flex-push">{{ displayTime }}</li>
       </ul>
     </header>
     <main>
