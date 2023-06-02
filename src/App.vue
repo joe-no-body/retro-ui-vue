@@ -11,7 +11,7 @@ const message = ref(null);
 function focusInputBox() {
   // Only focus the input if the user hasn't selected text on screen.
   let selection = window.getSelection();
-  console.debug("Current selection:", selection);
+  // console.debug("Current selection:", selection);
   if (selection && selection.anchorNode && !selection.isCollapsed) return;
 
   userSelectionInput.value?.focus();
