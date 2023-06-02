@@ -8,9 +8,17 @@
   src: url('./PxPlus_IBM_VGA8.ttf');
 }
 
-/* *, *:before, *:after {
-  box-sizing: border-box;
-} */
+@font-face {
+  font-family: 'WY60';
+  src: url('./WY60.ttf');
+}
+
+:root {
+  --bg-color: #222;
+  --fg-color: orange;
+  /* --font: 'PxPlus_IBM_VG8'; */
+  --font: 'WY60';
+}
 
 html {
   height: 100%;
@@ -19,9 +27,9 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: #222;
-  color: orange;
-  font-family: 'PxPlus_IBM_VGA8', 'Classic Console Neue', monospace;
+  background-color: var(--bg-color);
+  color: var(--fg-color);
+  font-family: var(--font), monospace;
   font-size: 15pt;
 
   min-height: 100%;
@@ -36,8 +44,8 @@ body {
 header {
   width: 100%;
   height: 2rem;
-  background: orange;
-  color: #222;
+  background: var(--fg-color);
+  color: var(--bg-color);
   padding-top: 0.25rem;
   font-size: 1.5em;
 }
@@ -74,8 +82,24 @@ main {
 footer {
   grid-row-start: 3;
   grid-row-end: 4;
+  padding: 1rem;
 }
 
 footer div {
-  padding: 1rem;
+  padding: 0.125rem;
+}
+
+mark {
+  background-color: var(--fg-color);
+  color: var(--bg-color);
+  padding: 0.1em;
+}
+
+input[type="text"] {
+  border: none;
+  outline: none;
+  background-color: var(--bg-color);
+  color: var(--fg-color);
+  font-size: 15pt;
+  height: 1em;
 }
