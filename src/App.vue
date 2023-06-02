@@ -8,6 +8,7 @@ const userSelectionInput = ref(null);
 const userSelection = ref('');
 const message = ref(null);
 
+const displayTitle = ref('DIGITAL PUBLIC LIBRARY');
 const displayDate = ref('');
 const displayTime = ref('');
 
@@ -98,7 +99,7 @@ function handleUserSelectionValue() {
     <header>
       <ul>
         <li>{{ displayDate }}</li>
-        <li class="flex-push">DIGITAL PUBLIC LIBRARY</li>
+        <li class="flex-push">{{ displayTitle }}</li>
         <li class="flex-push">{{ displayTime }}</li>
       </ul>
     </header>
