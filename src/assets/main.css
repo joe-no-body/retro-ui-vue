@@ -13,15 +13,20 @@
   src: url('./WY60.ttf');
 }
 
+@font-face {
+  font-family: 'SperryPC 8x16';
+  src: url('./Web437_SperryPC_8x16.woff');
+}
+
 :root {
   --bg-color: #222;
   --fg-color: orange;
-  /* --font: 'PxPlus_IBM_VG8'; */
-  --font: 'WY60';
+  --font: 'SperryPC 8x16';
 }
 
 html {
   height: 100%;
+  font-size: 1rem;
 }
 
 body {
@@ -30,8 +35,6 @@ body {
   background-color: var(--bg-color);
   color: var(--fg-color);
   font-family: var(--font), monospace;
-  font-size: 15pt;
-
   min-height: 100%;
 }
 
@@ -47,7 +50,6 @@ header {
   background: var(--fg-color);
   color: var(--bg-color);
   padding-top: 0.25rem;
-  font-size: 1.5em;
 }
 
 header ul {
@@ -100,6 +102,5 @@ input[type="text"] {
   outline: none;
   background-color: var(--bg-color);
   color: var(--fg-color);
-  font-size: 15pt;
   height: 1em;
 }
