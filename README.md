@@ -2,6 +2,8 @@
 
 Trying to recreate this terminal UI: [https://en.wikipedia.org/wiki/Dynix_(software)#/media/File:Dynix-Main-Menu-via-Telnet.jpg]
 
+Internet Archive has a book with more screens: https://archive.org/details/dynixguideforlib0000gilm/page/156/mode/2up?view=theater
+
 - Fonts
   - I found a public domain font from the actual WY-60 terminal but I'm not sure if I like it -- feels too pixely: http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=6294
   - Classic Console Neue feels a little too blocky: http://webdraft.hu/fonts/classic-console/
