@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+import PromptInput from './components/PromptInput.vue';
 
 // import { RouterLink, RouterView } from 'vue-router'
 // import HelloWorld from './components/HelloWorld.vue'
@@ -51,29 +52,9 @@ function zeropad(s) {
   return ("" + s).padStart(2, "0");
 }
 
-function focusInputBox() {
-  // Only focus the input if the user hasn't selected text on screen.
-  let selection = window.getSelection();
-  // console.debug("Current selection:", selection);
-  if (selection && selection.anchorNode && !selection.isCollapsed) return;
-
-  userSelectionInput.value?.focus();
-}
-
-onMounted(() => {
-  // Focus input on page load.
-  focusInputBox();
-  // Focus input when the user clicks anywhere.
-  window.addEventListener('click', focusInputBox);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('click', focusInputBox);
-});
-
 initTimeUpdater(displayDate, displayTime);
 
-function handleUserSelectionValue() {
+function handleUserSelectionValue(value) {
   message.value = `Invalid selection: ${userSelection.value}`;
   userSelection.value = '';
 }
@@ -88,15 +69,11 @@ function handleUserSelectionValue() {
         <li class="flex-push">{{ displayTime }}</li>
       </ul>
     </header>
+
     <RouterView/>
-    <footer>
-      <div class="full-width-input-container">
-        <div class="label">
-          <mark>Enter your selection(s) and press &lt;Enter&gt;:</mark>
-        </div>
-        <div class="input"><input type="text" ref="userSelectionInput" v-model="userSelection" @keyup.enter="handleUserSelectionValue"></div>
-      </div>
-      <div v-if="message">{{ message }}</div>
-    </footer>
+
+    <PromptInput
+      v-model="userSelection" @submit="handleUserSelectionValue"
+      :message="message"/>
   </div>
 </template>
