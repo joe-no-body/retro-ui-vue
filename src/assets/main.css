@@ -59,17 +59,20 @@ body {
 
 header {
   width: 100%;
-  height: 1.5em;
+  height: 1.25em;
   background: var(--fg-color);
   color: var(--bg-color);
-  padding-top: 0.25em;
+  padding-top: 0.125em;
 }
 
 header ul {
   display: flex;
   margin: 0;
-  padding: 0 1rem;
+  padding: 0 1em;
   justify-content: flex-start;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 1em;
 }
 
 header ul li {
