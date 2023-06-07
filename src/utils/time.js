@@ -1,3 +1,5 @@
+import { ref, onMounted, onUnmounted } from "vue";
+
 export function zeropad(s) {
   return ("" + s).padStart(2, "0");
 }
@@ -29,4 +31,25 @@ export function renderRawTime(hour, minutes) {
   minutes = zeropad(minutes);
 
   return `${hour}:${minutes}${period}`;
+}
+
+export function useClock(updateInterval = 1000) {
+  const displayDate = ref('');
+  const displayTime = ref('');
+  let intervalId;
+
+  function update() {
+    let date = new Date();
+    displayDate.value = renderDate(date);
+    displayTime.value = renderTime(date);
+  }
+
+  onMounted(() => {
+    update();
+    intervalId = setInterval(update, updateInterval);
+  });
+
+  onUnmounted(() => clearInterval(intervalId));
+
+  return {date: displayDate, time: displayTime};
 }
