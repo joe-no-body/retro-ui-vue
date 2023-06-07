@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from 'vue';
 import PromptInput from './components/PromptInput.vue';
-import {useClock} from './utils/time.js';
+import AppHeader from './components/AppHeader.vue';
+import { useClock } from './utils/time.js';
 
-// import { RouterLink, RouterView } from 'vue-router'
-// import HelloWorld from './components/HelloWorld.vue'
+import { RouterLink, RouterView } from 'vue-router'
 
 const userSelection = ref('');
 const message = ref(null);
@@ -21,13 +21,7 @@ function handleUserSelectionValue(value) {
 
 <template>
   <div class="wrapper">
-    <header>
-      <ul>
-        <li>{{ date }}</li>
-        <li class="flex-push">{{ displayTitle }}</li>
-        <li class="flex-push">{{ time }}</li>
-      </ul>
-    </header>
+    <AppHeader :title="displayTitle"/>
 
     <RouterView/>
 
