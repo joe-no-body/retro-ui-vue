@@ -1,19 +1,4 @@
 @font-face {
-  font-family: 'Classic Console Neue';
-  src: url('./ClassicConsoleNeue.ttf');
-}
-
-@font-face {
-  font-family: 'PxPlus_IBM_VGA8';
-  src: url('./PxPlus_IBM_VGA8.ttf');
-}
-
-@font-face {
-  font-family: 'WY60';
-  src: url('./WY60.ttf');
-}
-
-@font-face {
   font-family: 'SperryPC 8x16';
   font-style: normal;
   font-weight: 400;
