@@ -1,7 +1,14 @@
 <script setup>
 import { ref } from 'vue';
+import PromptInput from '@/components/PromptInput.vue';
 
-const msg = ref('Hello World!');
+function handleUserSelectionValue(value) {
+  message.value = `Invalid selection: ${userSelection.value}`;
+  userSelection.value = '';
+}
+
+const userSelection = ref('');
+const message = ref(null);
 </script>
 
 <template>
@@ -28,4 +35,8 @@ const msg = ref('Hello World!');
       </ol>
     </div>
   </main>
+
+  <PromptInput
+    v-model="userSelection" @submit="handleUserSelectionValue"
+    :message="message"/>
 </template>
