@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 import PromptInput from './components/PromptInput.vue';
+import * as time from './utils/time.js';
 
 // import { RouterLink, RouterView } from 'vue-router'
 // import HelloWorld from './components/HelloWorld.vue'
@@ -16,40 +17,21 @@ const displayTime = ref('');
 function initTimeUpdater(dateRef, timeRef) {
   let intervalId;
 
-
   function updateTime() {
     let date = new Date();
-    let year = date.getFullYear();
-    let month = zeropad(date.getMonth());
-    let day = zeropad(date.getDate());
 
-    // TODO: test and validate this logic
-    let hour = date.getHours();
-    let period = 'am';
-    if (hour >= 12) {
-      period = 'pm';
-      hour -= 12;
-    }
-    if (hour == 0) hour = '12';
-    hour = zeropad(hour);
-    let minute = zeropad(date.getMinutes());
-
-    dateRef.value = `${year}-${month}-${day}`;
-    timeRef.value = `${hour}:${minute}${period}`;
+    dateRef.value = time.renderDate(date);
+    timeRef.value = time.renderTime(date);
   }
 
   onMounted(() => {
     updateTime();
-    intervalId = setInterval(updateTime, 1000);
+    intervalId = setInterval(updateTime, 2000);
   });
 
   onUnmounted(() => {
     clearInterval(intervalId);
   });
-}
-
-function zeropad(s) {
-  return ("" + s).padStart(2, "0");
 }
 
 initTimeUpdater(displayDate, displayTime);
