@@ -36,6 +36,9 @@ const inputValue = computed({
 </script>
 
 <template>
+  <!--
+    TODO decouple this from <footer> so it's more reusable.
+  -->
   <footer>
     <div class="full-width-input-container">
       <div class="label">
