@@ -1,6 +1,8 @@
 # retro-ui-vue
 
-Trying to recreate [this Dynix terminal UI](https://en.wikipedia.org/wiki/Dynix_(software)#/media/File:Dynix-Main-Menu-via-Telnet.jpg).
+Trying to recreate [this Dynix terminal UI](https://en.wikipedia.org/wiki/Dynix_(software)#/media/File:Dynix-Main-Menu-via-Telnet.jpg) as a single page web app using Vue. (If that statement makes you feel aghast, then I've succeeded.) Here's the result as of the time of writing:
+
+![Screenshot of a web page that recreates a terminal user interface](assets/screenshot.png)
 
 Internet Archive has a book with more screens: https://archive.org/details/dynixguideforlib0000gilm/page/156/mode/2up?view=theater
 
