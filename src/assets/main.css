@@ -1,3 +1,6 @@
+/* TODO: reorganize this code so it's grouped more logically */
+
+/* A suitably vintage monospace font. */
 @font-face {
   font-family: 'SperryPC 8x16';
   font-style: normal;
@@ -5,6 +8,7 @@
   src: url('./Web437_SperryPC_8x16.woff') format('woff');
 }
 
+/* Global variables for ease of reuse. */
 :root {
   --bg-color: #222;
   --fg-color: orange;
@@ -13,14 +17,20 @@
 }
 
 html {
+  /* TODO: check if this is actually needed to make the page render correctly.
+     I think I added this to make the sticky footer work but it might not be
+     needed with the current approach. */
   height: 100%;
 }
 
+/* .fix-font isn't used but is a placeholder for eventually fixing the aspect
+   ratio of the text. */
 .fix-font {
   /* text should have a 5:6 aspect ratio to render correctly */
   /* TODO: figure out how to apply this without breaking the aspect ratio of the
      entire page (otherwise there's a large border around everthing) */
   transform: scaleX(0.8333);
+  /* width: 120%; */
 }
 
 body {
@@ -30,19 +40,20 @@ body {
   color: var(--fg-color);
   font-family: var(--font), monospace;
   font-size: var(--font-size);
-  min-height: 100%;
 
-  /* transform: scaleX(0.8333);
-  width: 120%; */
+  /* Set min-height for sticky footer. */
+  min-height: 100%;
 }
 
+/* .wrapper sets up a grid layout for a header and sticky footer. */
 .wrapper {
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
 
-header {
+/* Invert the color of <header> and stick it to the top of the screen. */
+.wrapper header {
   width: 100%;
   height: 1.25em;
   background: var(--fg-color);
@@ -50,7 +61,7 @@ header {
   padding-top: 0.125em;
 }
 
-header ul {
+.wrapper header ul {
   display: flex;
   margin: 0;
   padding: 0 1em;
@@ -60,12 +71,12 @@ header ul {
   padding-inline-start: 1em;
 }
 
-header ul li {
+.wrapper header ul li {
   list-style: none;
   padding: 0;
 }
 
-.flex-push {
+header ul .flex-push {
   margin-left: auto;
 }
 
@@ -82,17 +93,18 @@ main {
   margin: 1em;
 }
 
-footer {
+/* Make <footer> stick to the bottom of the .wrapper container. */
+.wrapper footer {
   grid-row-start: 3;
   grid-row-end: 4;
   padding: 1rem;
 }
 
-footer div {
+.wrapper footer div {
   padding: 0.125rem;
 }
 
-footer div * {
+.wrapper footer div * {
   vertical-align: bottom;
 }
 
@@ -112,7 +124,11 @@ input[type="text"] {
   font-size: var(--font-size);
 }
 
+/* .full-width-input-container makes a label and input fill the width of the
+   screen such that the input occupies all space not used by the label. */
 .full-width-input-container {
+  /* TODO: remove the need for extra <divs> inside this one - just use <label>
+     and <input> directly */
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -120,13 +136,17 @@ input[type="text"] {
 }
 
 .full-width-input-container .label {
+  /* Only occupy the space needed for the label text. */
+  /* TODO: use an actual <label> element here if possible. */
   flex: initial;
 }
 
 .full-width-input-container .input {
+  /* Expand the input to fill the remaining available space. */
   flex: auto;
 }
 
 .full-width-input-container .input input {
+  /* Make the input element fill the full width. */
   width: 100%;
 }
